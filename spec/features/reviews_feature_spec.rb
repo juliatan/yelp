@@ -26,6 +26,6 @@ describe 'Average ratings' do
   it 'calculates and displays average rating' do
     leave_rating('Poor', 2)
     leave_rating('Great', 4)
-    expect(page).to have_content 'Average rating: 3'
+    expect(page).to have_content 'Average rating: ★★★☆☆'
   end
 end

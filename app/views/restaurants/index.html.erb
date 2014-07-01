@@ -9,11 +9,11 @@
     <% @restaurants.each do |r| %>
       <li>
         <%= r.name %> (<%= r.cuisine %>) || <br>
-        Average rating: <%= r.average_rating %>
+        Average rating: <%= star_rating(r.average_rating) %>
         <%= link_to "Review #{r.name}", new_restaurant_review_path(r.id) %> || <br>
         <%= link_to "Edit #{r.name}", edit_restaurant_path(r.id) %> || <br>
         <%= link_to "Delete #{r.name}", restaurant_path(r.id), method: :delete, "data-confirm" => 'Are you sure?' %>
-      
+
         <ul>
           <% r.reviews.each do |review| %>
             <li>
