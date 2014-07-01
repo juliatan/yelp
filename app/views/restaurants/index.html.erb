@@ -8,9 +8,19 @@
   <ul>
     <% @restaurants.each do |r| %>
       <li>
-        <%= r.name %> (<%= r.cuisine %>) || 
+        <%= r.name %> (<%= r.cuisine %>) ||
+        <%= link_to "Review #{r.name}", new_restaurant_review_path(r.id) %> ||
         <%= link_to "Edit #{r.name}", edit_restaurant_path(r.id) %> ||
         <%= link_to "Delete #{r.name}", restaurant_path(r.id), method: :delete, "data-confirm" => 'Are you sure?' %>
+      
+        <ul>
+          <% r.reviews.each do |review| %>
+            <li>
+              <%= review.thoughts %> (<%= review.rating %>)
+            </li>
+          <% end %>
+        </ul>
+        
       </li>
     <% end %>
   </ul>
