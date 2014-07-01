@@ -1,0 +1,20 @@
+<h1>Restaurants</h1>
+
+<a href="/restaurants/new">Add new restaurant</a>
+
+<br>
+
+<% if @restaurants.any? %>
+  <ul>
+    <% @restaurants.each do |r| %>
+      <li>
+        <%= r.name %> (<%= r.cuisine %>) || 
+        <%= link_to "Edit #{r.name}", edit_restaurant_path(r.id) %> ||
+        <%= link_to "Delete #{r.name}", restaurant_path(r.id), method: :delete, "data-confirm" => 'Are you sure?' %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  There are no restaurants listed
+<% end %>
+
