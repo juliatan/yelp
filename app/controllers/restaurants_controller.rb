@@ -44,5 +44,6 @@ class RestaurantsController < ApplicationController
   def restaurant_params
     #explicitly allow this input field to be submitted
     params.require(:restaurant).permit(:name, :cuisine)
+    # or params[:restaurant].permit(:name, :cuisine)
   end
 end
