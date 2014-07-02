@@ -42,5 +42,15 @@ RSpec.describe Restaurant, :type => :model do
       # above is more generic statement, below is more specific
       expect(restaurant).to have(1).error_on(:name)
     end
+
+    it 'should have a cuisine' do
+      restaurant = Restaurant.new cuisine: nil
+      expect(restaurant).to have(1).error_on(:cuisine)
+    end
+
+    it 'should have a cuisine of more than 3 characters' do
+      restaurant = Restaurant.new cuisine: 'ff'
+      expect(restaurant).to have(1).error_on(:cuisine)
+    end
   end
 end

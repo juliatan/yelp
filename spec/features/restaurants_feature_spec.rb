@@ -10,7 +10,7 @@ describe 'Restaurants listing page' do
 
   context 'are restaurants' do
     before do
-      Restaurant.create(name: "Duck and Waffle")
+      Restaurant.create(name: "Duck and Waffle", cuisine: "European")
     end
 
     it 'should display restaurants' do
