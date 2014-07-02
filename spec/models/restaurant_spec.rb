@@ -34,4 +34,13 @@ RSpec.describe Restaurant, :type => :model do
       end
     end
   end
+
+  describe '#validity' do
+    it 'should have a name' do
+      restaurant = Restaurant.new name: nil
+      expect(restaurant).not_to be_valid
+      # above is more generic statement, below is more specific
+      expect(restaurant).to have(1).error_on(:name)
+    end
+  end
 end
