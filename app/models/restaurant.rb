@@ -1,6 +1,6 @@
 class Restaurant < ActiveRecord::Base
   validates :name, :cuisine, presence: true
-  # validates :cuisine, presence: true
+  validates :cuisine, length: {minimum: 3}
 
   has_many :reviews
 
