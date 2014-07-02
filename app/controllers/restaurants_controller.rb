@@ -15,6 +15,7 @@ class RestaurantsController < ApplicationController
     if @restaurant.save
       redirect_to '/restaurants'
     else
+      # if there is an error in creating a restaurant
       render 'new'
     end
 

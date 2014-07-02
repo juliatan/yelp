@@ -43,7 +43,7 @@ RSpec.describe Restaurant, :type => :model do
       expect(restaurant).to have(2).error_on(:name)
     end
 
-    it 'should have a name that capitalizes first letter of each word' do
+    it 'should have a name with the first letter capitalized' do
       restaurant = Restaurant.new name: 'burger king'
       expect(restaurant).to have(1).error_on(:name)
     end

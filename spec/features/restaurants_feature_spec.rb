@@ -46,10 +46,8 @@ describe 'Restaurant creation form' do
   end
 end
 
-describe 'Restaurant edit form' do
-  before do
-    Restaurant.create(name: "Duck and Waffle", cuisine: 'European')
-  end
+describe 'Restaurant editing and deleting' do
+  before { Restaurant.create(name: 'Duck and Waffle', cuisine: 'European') }
 
   it 'should be able to edit a restaurant' do
     visit '/restaurants'
@@ -60,10 +58,6 @@ describe 'Restaurant edit form' do
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content "Ducky (French)"
   end
-end
-
-describe 'Restaurant delete option' do
-  before { Restaurant.create(name: 'Duck and Waffle', cuisine: 'European') }
 
   it 'should be able to delete a restaurant' do
     visit '/restaurants'
