@@ -1,6 +1,7 @@
 class Restaurant < ActiveRecord::Base
   validates :name, :cuisine, presence: true
-  validates :cuisine, length: {minimum: 3}
+  validates :name, format: { with: /\A[A-Z]/, message: "Has to start with capital letter" }
+  validates :cuisine, length: { minimum: 3 }
 
   has_many :reviews
 

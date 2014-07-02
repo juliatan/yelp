@@ -41,7 +41,7 @@ describe 'Restaurant creation form' do
       click_button 'Create Restaurant'
       expect(current_path).to eq '/restaurants'
       expect(page).not_to have_content 'burger king (ff)'
-      expect(page).to have_content 'Errors'
+      expect(page).to have_content 'Has to start with capital letter'
     end
   end
 end

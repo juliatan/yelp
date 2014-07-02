@@ -11,7 +11,13 @@ class RestaurantsController < ApplicationController
     # Restaurant.create(params[:name]) - no longer allowed in Rails 4 due to
     # security risk
     @restaurant = Restaurant.create restaurant_params
-    redirect_to '/restaurants'
+
+    if @restaurant.save
+      redirect_to '/restaurants'
+    else
+      render 'new'
+    end
+
   end
 
   def edit # get function

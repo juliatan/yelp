@@ -40,6 +40,11 @@ RSpec.describe Restaurant, :type => :model do
       restaurant = Restaurant.new name: nil
       expect(restaurant).not_to be_valid
       # above is more generic statement, below is more specific
+      expect(restaurant).to have(2).error_on(:name)
+    end
+
+    it 'should have a name that capitalizes first letter of each word' do
+      restaurant = Restaurant.new name: 'burger king'
       expect(restaurant).to have(1).error_on(:name)
     end
 
