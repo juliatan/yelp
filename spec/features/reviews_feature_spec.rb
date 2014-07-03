@@ -20,17 +20,26 @@ describe 'When writing reviews' do
     end
   end
 
-  # context 'logged in' do
-  #   it 'should add reviews to the restaurant page' do
-  #     leave_rating("Amazing duck", 5)
-  #     expect(page).to have_content 'Amazing duck (★★★★★)'
-  #   end
-  # end
+  context 'logged in' do
+    before do 
+      user = User.create email: 's@s.com', password: '12345678', password_confirmation: '12345678'
+      login_as user
+    end
+
+    it 'should add reviews to the restaurant page' do
+      leave_rating("Amazing duck", 5)
+      expect(page).to have_content 'Amazing duck (★★★★★)'
+    end
+  end
 end
 
 describe 'Average ratings' do
 
-  before { Restaurant.create(name: 'Duck and Waffle', cuisine: 'European') }
+  before do 
+    Restaurant.create(name: 'Duck and Waffle', cuisine: 'European')
+    user = User.create email: 's@s.com', password: '12345678', password_confirmation: '12345678'
+    login_as user
+  end
 
     it 'calculates and displays average rating' do
       leave_rating('Poor', 2)
