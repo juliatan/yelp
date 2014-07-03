@@ -21,7 +21,17 @@ describe 'Restaurants listing page' do
 end
 
 describe 'Restaurant creation form' do
-  
+
+  context 'logged out' do
+
+    it 'should forward user to sign in page' do
+      visit '/restaurants'
+      click_link 'Add new restaurant'
+      expect(page).to have_content 'Sign In'
+    end
+
+  end
+
   # context 'logged in' do
 
   #   context 'If the input is valid' do
@@ -53,6 +63,19 @@ end
 
 describe 'Restaurant editing and deleting' do
   before { Restaurant.create(name: 'Duck and Waffle', cuisine: 'European') }
+
+  context 'logged out' do
+    it 'should not allow user to edit a restaurant' do
+      visit '/restaurants'
+      expect(page).not_to have_content 'Edit Duck and Waffle'
+    end
+
+    it 'should not allow user to delete a restaurant' do
+      visit '/restaurants'
+      expect(page).not_to have_content 'Delete Duck and Waffle'
+    end
+
+  end
 
   # context 'logged in' do
 
