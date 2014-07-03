@@ -97,13 +97,5 @@ describe 'Restaurant editing and deleting' do
       expect(page).to have_content "Ducky (French)"
     end
 
-    it 'should be able to delete a restaurant' do
-      visit '/restaurants'
-      click_link 'Delete Duck and Waffle'
-      expect(current_path).to eq '/restaurants'
-      expect(page).not_to have_content "Duck and Waffle (European)"
-      expect(page).to have_content "Successfully deleted Duck and Waffle"
-    end
-
   end
 end

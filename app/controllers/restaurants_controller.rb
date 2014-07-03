@@ -14,6 +14,7 @@ class RestaurantsController < ApplicationController
     # Restaurant.create(params[:name]) - no longer allowed in Rails 4 due to
     # security risk
     @restaurant = Restaurant.create restaurant_params
+    @restaurant.user = current_user
 
     if @restaurant.save
       redirect_to '/restaurants'
@@ -43,10 +44,14 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    @restaurant = Restaurant.find params[:id]
+    @restaurant = current_user.restaurants.find params[:id]
     @restaurant.destroy
     flash[:notice] = "Successfully deleted #{@restaurant.name}"
-    redirect_to '/restaurants'
+
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "You cannot delete it as it's not your restaurant"
+    ensure
+      redirect_to '/restaurants'
   end
 
   private 

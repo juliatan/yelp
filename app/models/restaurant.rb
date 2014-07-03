@@ -4,6 +4,7 @@ class Restaurant < ActiveRecord::Base
   validates :cuisine, length: { minimum: 3 }
 
   has_many :reviews
+  belongs_to :user
 
   def average_rating
     return "N/A" if reviews.none?
