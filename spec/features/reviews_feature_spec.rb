@@ -2,7 +2,8 @@ require 'rails_helper'
 
 def leave_rating(thoughts, rating)
   visit '/restaurants'
-  click_link 'Review Duck and Waffle'
+  # click_link 'Review Duck and Waffle'
+  # no longer needed since moving review form onto index page
   fill_in 'Thoughts', with: thoughts
   select rating, from: 'Rating'
   click_button 'Create Review'
@@ -14,8 +15,7 @@ describe 'When writing reviews' do
 
   it 'should add reviews to the restaurant page' do
     leave_rating("Amazing duck", 5)
-    expect(page).to have_content 'Amazing duck (5)'
-    expect(page).to have_content 'Your review has been added'
+    expect(page).to have_content 'Amazing duck (★★★★★)'
   end
 end
 

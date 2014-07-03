@@ -7,21 +7,34 @@
 <% if @restaurants.any? %>
   <ul>
     <% @restaurants.each do |r| %>
-      <li>
+      <li class="restaurant">
         <%= r.name %> (<%= r.cuisine %>) ||
         <%= link_to "Review #{r.name}", new_restaurant_review_path(r.id) %> ||
         <%= link_to "Edit #{r.name}", edit_restaurant_path(r.id) %> ||
         <%= link_to "Delete #{r.name}", restaurant_path(r.id), method: :delete, "data-confirm" => 'Are you sure?' %> <br>
 
-        Average rating: <%= star_rating(r.average_rating) %>
+        Average rating: 
+        <span class="average_rating">
+          <%= star_rating(r.average_rating) %>
+        </span>
         
-        <ul>
+        <ul class="reviews">
           <% r.reviews.each do |review| %>
             <li>
-              <%= review.thoughts %> (<%= review.rating %>)
+              <%= review.thoughts %> (<%= star_rating(review.rating) %>)
             </li>
           <% end %>
         </ul>
+
+          <%= form_for [r, @review] do |f| %>
+            <%= f.label :thoughts %>
+            <%= f.text_area :thoughts %>
+
+            <%= f.label :rating %>
+            <%= f.select :rating, 1..5 %>
+
+            <%= f.submit %>
+          <% end %>
 
       </li>
     <% end %>
