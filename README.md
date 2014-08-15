@@ -30,7 +30,7 @@ How to run the program
 ```sh
 git clone https://github.com/juliatan/yelp
 cd yelp
-rails s
+bin/rails s
 ```
 
 Visit http://localhost:3000/restaurants in your browser.
